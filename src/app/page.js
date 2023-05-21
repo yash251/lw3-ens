@@ -5,6 +5,15 @@ import { ethers, providers } from "ethers";
 import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
+  // walletConnected keep track of whether the user's wallet is connected or not
+  const [walletConnected, setWalletConnected] = useState(false);
+  // ENS
+  const [ens, setENS] = useState("");
+  // save the address of the currently connected account
+  const [address, setAddress] = useState("");
+  // create a reference to the Web3 Modal (used for connecting to Metamask) which persists as long as the page is open
+  const web3ModalRef = useRef();
+  
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
