@@ -14,6 +14,21 @@ export default function Home() {
   // create a reference to the Web3 Modal (used for connecting to Metamask) which persists as long as the page is open
   const web3ModalRef = useRef();
 
+  /**
+   * Sets the ENS, if the current connected address has an associated ENS or else it sets
+   * the address of the connected account
+   */
+  const setENSOrAddress = async (address, web3Provider) => {
+    // Lookup the ENS related to the given address
+    var _ens = await web3Provider.lookupAddress(address);
+    // If the address has an ENS set the ENS or else just set the address
+    if (_ens) {
+      setENS(_ens);
+    } else {
+      setAddress(address);
+    }
+  };
+
   return (
     <div>
       
